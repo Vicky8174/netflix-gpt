@@ -1,9 +1,8 @@
-import "./App.css";
+import Body from "./components/Body";
 function App() {
   return (
-    <div className="text-3xl text-red-600 font-bold">
-    NETFLIX-GPT
-    </div>
+    <Body/>
+    
   );
 }
 
