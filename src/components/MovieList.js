@@ -25,7 +25,7 @@ const MovieList = ({title, movie}) => {
         <div className="overflow-x-auto pb-8 w-full scrollbar-hide">
           <div className="flex gap-4 pl-12 pr-12">
             {movie.map((movie) => (
-              <div key={movie.id} className="flex-none w-52 transition-transform duration-300 hover:scale-105 relative group/item">
+              <div key={movie.id} className=" flex-none w-52 transition-transform duration-300 hover:scale-105 relative group/item">
                 <MovieCard poster_path={movie.poster_path} />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover/item:bg-opacity-20 transition-all duration-300"></div>
               </div>
