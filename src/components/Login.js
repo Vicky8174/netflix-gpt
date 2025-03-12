@@ -1,109 +1,109 @@
-import { useRef, useState } from "react";
-import { bgImg } from "../utils/const";
-import Header from "./Header";
-import { checkValidData } from "../utils/validate";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import React, { useState, useRef } from 'react';
+import Header from './Header';
+import { bgImg } from '../utils/constant';
+import checkValidateData from '../utils/validate';
+import { auth } from '../utils/firbase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
-
-  const[isSignInForm,setSignInForm] = useState(true);
-
-  const[errorMessage,setErrormessage] = useState(null);
-
-  
-
+  const [isSignIn, setSignIn] = useState(true);
+  const [isMessage, setMessage] = useState('');
   const email = useRef(null);
   const password = useRef(null);
-  
-  
+  const name = useRef(null);
 
-  const handleButtonClick = () =>{
+  const handleButtonClick = () => {
+    const emailValue = email.current.value;
+    const passwordValue = password.current.value;
+    const nameValue = name.current ? name.current.value : '';
 
-    const message = checkValidData(email.current.value, password.current.value);
-    setErrormessage(message);
+    const message = isSignIn
+      ? checkValidateData(emailValue, passwordValue)
+      : checkValidateData(emailValue, passwordValue, nameValue);
 
-    if(!isSignInForm){
-      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
-      .then((userCredential) => {
-        // Signed up 
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setErrormessage(errorMessage)
-        // ..
-      });
+    setMessage(message);
+    if (message) return;
+
+    if (!isSignIn) {
+      createUserWithEmailAndPassword(auth, emailValue, passwordValue)
+        .then((userCredential) => {
+          console.log(userCredential.user);
+        })
+        .catch((error) => {
+          setMessage(error.code + " - " + error.message);
+        });
+    } else {
+      signInWithEmailAndPassword(auth, emailValue, passwordValue)
+        .then((userCredential) => {
+          console.log(userCredential.user);
+        })
+        .catch((error) => {
+          setMessage(error.code + " - " + error.message);
+        });
     }
-    else{
-      signInWithEmailAndPassword(auth,email.current.value, password.current.value)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setErrormessage(errorMessage)
-      });
+  };
 
-    }
-
-  }
-
-  const toggleSignInForm = () =>{
-    setSignInForm(!isSignInForm);
-
-  }
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative h-screen w-screen flex flex-col bg-black">
       <Header />
-      
-      {/* Background Image */}
       <div className="absolute inset-0">
-        <img src={bgImg} alt="background-image" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <img
+          className="w-full h-full object-cover opacity-50"
+          src={bgImg}
+          alt="background"
+        />
       </div>
+      <div className="flex-grow flex items-center justify-center z-10">
+        <form onSubmit={(e) => e.preventDefault()} className="bg-black bg-opacity-80 p-10 rounded-lg w-11/12 sm:w-8/12 md:w-5/12 lg:w-4/12 xl:w-3/12 shadow-lg">
+          <h1 className="text-white text-4xl font-semibold mb-6">
+            {isSignIn ? "Sign In" : "Sign Up"}
+          </h1>
 
-      {/* Centered Login Form */}
-      <form onSubmit={(e)=>e.preventDefault()} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-65 p-12 rounded-lg shadow-lg w-96">
-        <h2 className="text-white text-2xl font-bold text-center p-3 mb-4">{isSignInForm ? "Sign In" : "Sign Up"}</h2>
-        
-        {!isSignInForm && <input 
-          type="text" 
-          placeholder="Full Name"
-          className="w-full p-3 mb-6 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" 
-        />}
+          {!isSignIn && (
+            <input
+              ref={name}
+              type="text"
+              placeholder="Full Name"
+              className="w-full p-3 mb-4 rounded bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+            />
+          )}
 
-        <input 
-        ref={email}
-          type="text" 
-          placeholder="Email or mobile number"
-          className="w-full p-3 mb-6 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" 
-        />
+          <input
+            ref={email}
+            type="email"
+            placeholder="Email"
+            className="w-full p-3 mb-4 rounded bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+          />
 
-        <input 
-        ref={password}
-          type="password" 
-          placeholder="Password" 
-          className="w-full p-3 mb-6 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" 
-        />
-        <p className="text-red-600 px-2">{errorMessage}</p>
+          <input
+            ref={password}
+            type="password"
+            placeholder="Password"
+            className="w-full p-3 mb-6 rounded bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+          />
 
-        <button onClick={handleButtonClick} className="w-full p-3 my-6 bg-red-700 text-white font-bold rounded-lg hover:bg-red-800 transition">
-        {isSignInForm ? "Sign In" : "Sign Up"}
-        </button>
-        
+          {isMessage && <p className='text-red-500 text-sm mb-6'>{isMessage}</p>}
 
-        <p onClick={toggleSignInForm} className="text-white text-center py-4 cursor-pointer">{isSignInForm ? "New to Netflix? Sign up now." : "Already registered. Please Sign In"}</p>
-      </form>
+          <button
+            className="w-full p-3 rounded bg-red-600 text-white font-semibold hover:bg-red-700 transition duration-300"
+            onClick={handleButtonClick}
+          >
+            {isSignIn ? "Sign In" : "Sign Up"}
+          </button>
+
+          <p className="text-gray-400 mt-6 text-sm">
+            {isSignIn ? "New to Netflix?" : "Already have an account?"} 
+            <span
+              onClick={() => setSignIn(!isSignIn)}
+              className="text-white font-semibold cursor-pointer hover:underline ml-1"
+            >
+              {isSignIn ? "Sign up now." : "Sign in"}
+            </span>
+          </p>
+        </form>
+      </div>
     </div>
   );
-}
+};
 
 export default Login;
