@@ -22,7 +22,7 @@ const SecondaryContainer = () => {
 };
 
 const MovieSection = ({ title, movies }) => (
-    <div className="mb-10 overflow-x-auto pb-8 w-full scrollbar-hide ">
+    <div className="overflow-x-auto scrollbar-hide scroll-container ">
         <h2 className="text-4xl font-bold mb-4 relative text-center">
             {title}
             <span className="block w-auto h-1 bg-red-500 mx-auto mt-4"></span>

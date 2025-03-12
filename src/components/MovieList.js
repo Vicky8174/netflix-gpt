@@ -22,7 +22,7 @@ const MovieList = ({title, movie}) => {
         </button>
         
         {/* Movie row */}
-        <div className="overflow-x-auto pb-8 w-full scrollbar-hide">
+        <div className="overflow-x-auto scrollbar-hide scroll-container">
           <div className="flex gap-4 pl-12 pr-12">
             {movie.map((movie) => (
               <div key={movie.id} className=" flex-none w-52 transition-transform duration-300 hover:scale-105 relative group/item">
