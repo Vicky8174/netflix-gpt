@@ -1,10 +1,10 @@
-export const API_OPTION =  {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxODM0MGFjNGRhOGE3YWZlNmQyZTBjYmJhZTkxYzE3YSIsIm5iZiI6MTcyMzM5ODY0OS40OTcxNzUsInN1YiI6IjY2YjhmNzQyOTBjMzkwYjI0YzA3NWVjZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SfQYZiivZPudo__fjj2kCmGaJbA16z1WplxW9S5ppN0'
-    }
-  };
+export const API_OPTION = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODAxOGRlNDliNGVhMmRjMTI2MTkxNDNjNDQ1NDA1OSIsIm5iZiI6MTc0MTgwMTc2NS4xNjQsInN1YiI6IjY3ZDFjOTI1NDJjMGNjYzNjYTFlM2YxZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qP8eSyac3L9lumtGsmecw5QU_jWeDE_SN9xMbk1BBl4'
+  }
+};
 export const LOGO = "https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 
 export const IMG_URL =  "https://image.tmdb.org/t/p/w500"; 

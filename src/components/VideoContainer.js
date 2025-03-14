@@ -26,7 +26,7 @@ const VideoContainer = ({ movieId, title, view }) => {
 
       {/* Overlay Content with Responsive Layout */}
       <div className="absolute inset-y-0 left-0 flex flex-col items-start justify-center p-4 sm:p-6 md:p-8 lg:p-10 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg ml-4 md:ml-8 lg:ml-12 ">
-        <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-2 sm:mb-3 md:mb-4 lg:mb-5">
+        <h1 className="text-white text-xl sm:text-md md:text-3xl lg:text-4xl font-extrabold mb-2 sm:mb-3 md:mb-4 lg:mb-5">
           {title}
         </h1>
         {/* Conditionally Render View Text on Larger Screens */}
