@@ -21,13 +21,7 @@ const searchMovieTmdb = async(movie)=>{
 
     return json.results;
 
-      
-
 }
-
-
-
-
 
 const gemni  = async(searchQuery,dispatch)=>{
           
