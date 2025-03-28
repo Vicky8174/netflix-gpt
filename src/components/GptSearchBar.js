@@ -17,7 +17,7 @@ const GptSearchBar = () => {
     const searchQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query: " +
       query +
-      ". Only give me names of 5 movies, comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
+      ". Only give me names of 15 movies, comma separated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
 
     gemni(searchQuery, dispatch);
   };
