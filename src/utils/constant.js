@@ -15,4 +15,4 @@ export const SEARCH_QUERY = "https://api.themoviedb.org/3/search/movie?query=";
 
 export const bgImg =  "https://assets.nflxext.com/ffe/siteui/vlv3/42a0bce6-fc59-4c1c-b335-7196a59ae9ab/web/IN-en-20250303-TRIFECTA-perspective_d5f81427-d6cf-412d-8e86-2315671b9be1_small.jpg"
 
-export const GEMNI_KEY = "AIzaSyAO840-tMiFtdmJ0F1RU4-pHC9YIP_eDdc"
+export const GEMNI_KEY = "AIzaSyBl_T4Z1xaCxPycHgWyTX4SMTTkk6w76_k"
